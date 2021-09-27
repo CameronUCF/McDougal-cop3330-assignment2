@@ -1,52 +1,56 @@
 package ex37;
 
+import java.util.Scanner;
 import java.util.Random;
 
-/**
- * FINISH
- * Hello world!
- *
- *
- * Example Output
- What's the minimum length? 8
- How many special characters? 2
- How many numbers? 2
- Your password is aurn2$1s#
-
- Constraints
- Use lists to store the characters you’ll use to generate the passwords.
- Ensure that the generated password is random.
- Ensure that there are at least as many letters are there are special characters and number.
+/*
+ *  UCF COP3330 Fall 2021 Assignment 2 Solution
+ *  Copyright 2021 first_name last_name
  */
 public class App
 {
     public static void main( String[] args )
     {
-        // Input stuff
-        System.out.println("Hello World!");
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("What's the minimum length?");
+        int length = scanner.nextInt();
+
+        System.out.println("How many special characters are there?");
+        int specChar = scanner.nextInt();
+
+        System.out.println("How many numbers?");
+        int numbers = scanner.nextInt();
+
+        System.out.printf("Your password is %s", generatePassword(length, specChar, numbers));
     }
 
     public static String generatePassword(int minLength, int specialChar, int numbers)
     {
         Random rand = new Random();
-        int passLength = rand.nextInt(((minLength + rand.nextInt(10)) - minLength) + minLength) + minLength;
+        int passLength = rand.nextInt(((minLength + rand.nextInt(5)) - minLength) + minLength) + minLength;
         char[] passwordArr = new char[passLength];
+        String specCharacters = "!@#$%^&*()=+-_.";
 
-        for(int i = 0; i < passLength - specialChar - numbers; i++)
+        System.out.printf("passLength: %d\nspecialChar: %d\nnumbers: %d\n", passLength, specialChar, numbers);
+
+        for(int i = 0; i < passLength - (specialChar + numbers); i++)
         {
             passwordArr[i] = (char)(rand.nextInt(26) + 'a');
         }
 
-        for(int i = passLength - specialChar - numbers; i < passLength + specialChar; i++)
+        for(int i = passLength - (specialChar + numbers); i < passLength - specialChar; i++)
         {
-            // add special chars
+            passwordArr[i] = specCharacters.charAt(rand.nextInt(specCharacters.length()));
         }
 
-        for(int i = passLength - numbers; i < passLength + specialChar + numbers; i++)
+        for(int i = passLength - numbers; i < passLength; i++)
         {
-            // Add numbers
+            passwordArr[i] = (char)(rand.nextInt(9) + '0');
         }
 
-        return passwordArr.toString();
+        String pass = new String(passwordArr);
+
+        return pass;
     }
 }
