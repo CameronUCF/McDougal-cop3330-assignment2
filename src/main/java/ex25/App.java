@@ -3,14 +3,12 @@ package ex25;
 import java.util.Scanner;
 
 /*
- TODO: Finish last case
+ TODO: Finish last case and add test cases
 */
 
-/**
- * A very weak password contains only numbers and is fewer than eight characters.
- A weak password contains only letters and is fewer than eight characters.
- A strong password contains letters and at least one number and is at least eight characters.
- A very strong password contains letters, numbers, and special characters and is at least eight characters.
+/*
+ *  UCF COP3330 Fall 2021 Assignment 2 Solution
+ *  Copyright 2021 Cameron McDougal
  */
 public class App
 {
