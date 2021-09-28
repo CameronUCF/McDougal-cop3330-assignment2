@@ -3,10 +3,6 @@ package ex25;
 import java.util.Scanner;
 
 /*
- TODO: Finish last case and add test cases
-*/
-
-/*
  *  UCF COP3330 Fall 2021 Assignment 2 Solution
  *  Copyright 2021 Cameron McDougal
  */
@@ -52,13 +48,16 @@ public class App
         if(password.matches("[0-9]+") == true && password.length() < 8)
             return 0;
 
-        if(password.matches("[a-zA-Z]+") == true && password.length() < 8)
+        if(password.matches("[a-zA-Z]+") == true && password.matches("[0-9]+") == false && password.length() < 8)
             return 1;
 
         if(password.matches("[a-zA-Z0-9]+") == true && password.length() >= 8)
             return 2;
 
-        // Pattern matches with special characters
-        return 3;
+        if(password.matches("[a-zA-Z0-9$&+,:;=?@#|'<>.^*()%!-]+") == true && password.length() >= 8)
+            return 3;
+
+        // Error
+        return 4;
     }
 }
